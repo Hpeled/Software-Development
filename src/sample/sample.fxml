@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import eu.hansolo.medusa.Gauge?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.View">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="505.0" prefWidth="546.0">
+         <children>
+            <Button fx:id="fileButton" layoutX="14.0" layoutY="464.0" mnemonicParsing="false" onAction="#chooseFile" text="FIle" />
+            <Label fx:id="fileLabel" layoutX="653.0" layoutY="478.0" prefHeight="17.0" prefWidth="233.0" />
+            <Slider fx:id="progressBar" blockIncrement="500.0" layoutX="175.0" layoutY="467.0" max="0.0" prefHeight="1.0" prefWidth="454.0" showTickLabels="true" showTickMarks="true">
+               <effect>
+                  <Blend />
+               </effect></Slider>
+            <Slider fx:id="rudder" layoutX="647.0" layoutY="438.0" max="20.0" prefHeight="20.0" prefWidth="110.0" />
+            <Slider fx:id="throttle" layoutX="757.0" layoutY="331.0" max="20.0" orientation="VERTICAL" prefHeight="110.0" prefWidth="20.0" />
+            <LineChart fx:id="featureLineChart" layoutX="154.0" layoutY="52.0" prefHeight="54.0" prefWidth="99.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Button fx:id="stop" disable="true" layoutX="381.0" layoutY="439.0" mnemonicParsing="false" onAction="#stop" text="Stop" />
+            <Button fx:id="forward" disable="true" layoutX="433.0" layoutY="439.0" mnemonicParsing="false" onAction="#speedUp" text="&gt;&gt;&gt;" />
+            <Canvas fx:id="featureCanvas" height="193.0" layoutX="343.0" layoutY="30.0" width="184.0" />
+            <Button fx:id="backwards" disable="true" layoutX="282.0" layoutY="439.0" mnemonicParsing="false" onAction="#speedDown" text="&lt;&lt;&lt;" />
+            <ListView fx:id="featureList" layoutX="14.0" layoutY="41.0" prefHeight="290.0" prefWidth="148.0" />
+            <Label fx:id="currentFeatureLabel" layoutX="212.0" layoutY="23.0" prefHeight="17.0" prefWidth="121.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Aharoni Bold" size="23.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="correlatedLineChart" layoutX="354.0" layoutY="52.0" prefHeight="110.0" prefWidth="164.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Text layoutX="33.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Features" wrappingWidth="160.13671875">
+               <font>
+                  <Font name="Aharoni Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text layoutX="33.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Algorithms" wrappingWidth="160.13671875">
+               <font>
+                  <Font name="Aharoni Bold" size="23.0" />
+               </font>
+            </Text>
+            <ListView fx:id="algorithmList" layoutX="14.0" layoutY="376.0" prefHeight="72.0" prefWidth="148.0" />
+            <Button fx:id="play" disable="true" layoutX="333.0" layoutY="439.0" mnemonicParsing="false" onAction="#play" text="Play" />
+            <Label fx:id="errorLabel" layoutX="162.0" layoutY="404.0" prefHeight="17.0" prefWidth="148.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="anomalyChart" layoutX="157.0" layoutY="196.0" prefHeight="232.0" prefWidth="395.0" title="Reported Anomalies">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Text layoutX="486.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed:" wrappingWidth="41.0">
+               <font>
+                  <Font name="Aharoni Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="speedText" alignment="CENTER" layoutX="527.0" layoutY="440.0" prefHeight="25.0" prefWidth="38.0" />
+            <Text layoutX="622.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Panel" wrappingWidth="160.13671875">
+               <font>
+                  <Font name="Aharoni Bold" size="23.0" />
+               </font>
+            </Text>
+            <Gauge fx:id="altimeterClock" layoutX="498.0" layoutY="58.0" prefHeight="138.0" prefWidth="233.0" threshold="600.0" title="Altimeter" />
+            <Gauge fx:id="airspeedClock" layoutX="653.0" layoutY="64.0" prefHeight="138.0" prefWidth="233.0" threshold="600.0" title="Air Speed" />
+            <Gauge fx:id="rollClock" layoutX="498.0" layoutY="202.0" prefHeight="138.0" prefWidth="233.0" threshold="600.0" title="Roll Degree" />
+            <Gauge fx:id="pitchClock" layoutX="653.0" layoutY="202.0" prefHeight="138.0" prefWidth="233.0" threshold="600.0" title="PItch Degree" />
+            <Circle fill="#4633a6" layoutX="702.0" layoutY="386.0" opacity="0.7" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#3f1d42" layoutX="702.0" layoutY="386.0" opacity="0.13" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+   </children>
+</GridPane>
